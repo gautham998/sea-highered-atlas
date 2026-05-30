@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import SingaporePolicyPage from "./SingaporePolicyPage";
 import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import { getPapersForView } from "./data/papers";
@@ -90,7 +91,7 @@ const countryProfiles = {
     corpus: "Comparative corpus",
   },
   Singapore: {
-    caption: "Meritocracy, Class, Pathways.",
+    caption: "Meritocracy, State Narratives of Opportunity, Institutional Pathways, and Student Experience.",
     corpus: "12 sample studies",
   },
   Thailand: {
@@ -634,6 +635,8 @@ export default function App() {
   const [selected, setSelected] = useState("Southeast Asia");
   const [showCorpusDrawer, setShowCorpusDrawer] = useState(false);
   const [selectedTag, setSelectedTag] = useState("All");
+  const [activePage, setActivePage] = useState("atlas");
+  const [policyMenuOpen, setPolicyMenuOpen] = useState(false);
   const selectedStudies = useMemo(() => {
     const zoteroPapers = getPapersForView(selected);
 
@@ -686,6 +689,10 @@ export default function App() {
     setSelectedTag("All");
   }, [selected]);
 
+  if (activePage === "singapore-policy") {
+    return <SingaporePolicyPage onBack={() => setActivePage("atlas")} />;
+  }
+
   return (
     <div className="min-h-screen bg-[#020812] text-slate-100">
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_24%_15%,rgba(14,165,233,0.18),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(37,99,235,0.16),transparent_26%),linear-gradient(rgba(14,165,233,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.04)_1px,transparent_1px)] bg-[size:100%_100%,100%_100%,48px_48px,48px_48px]" />
@@ -698,8 +705,8 @@ export default function App() {
               <Sparkles size={20} />
             </div>
             <div>
-              <h1 className="text-xl font-bold leading-tight text-white">SEA Higher Education<br />Equity & Inclusivity Atlas</h1>
-              <p className="mt-1 text-xs text-cyan-100/70">What does the landscape looklike?.</p>
+              <h1 className="text-xl font-bold leading-tight text-white">SEA Higher Education<br />Equity & Inclusion Atlas</h1>
+              <p className="mt-1 text-xs text-cyan-100/70">What does the landscape look like?</p>
             </div>
           </div>
 
@@ -712,13 +719,70 @@ export default function App() {
               [ClipboardList, "Policy"],
               [Network, "Methods"],
               [Sparkles, "Ask the Atlas", true],
-            ].map(([Icon, label, active]) => (
-              <button key={label} onClick={() => label === "Southeast Asia" && setSelected("Southeast Asia")} className={`relative flex items-center gap-2 px-2 py-4 ${active ? "text-white" : "hover:text-white"}`}>
-                <Icon size={19} className={active ? "text-cyan-200" : "text-slate-300"} />
-                {label}
-                {active && <span className="absolute bottom-0 left-0 h-px w-full bg-cyan-300 shadow-[0_0_12px_rgba(34,211,238,1)]" />}
-              </button>
-            ))}
+            ].map(([Icon, label, active]) => {
+              if (label === "Policy") {
+                return (
+                  <div key={label} className="relative">
+                    <button
+                      onClick={() => setPolicyMenuOpen((open) => !open)}
+                      className="relative flex items-center gap-2 px-2 py-4 hover:text-white"
+                    >
+                      <Icon size={19} className="text-slate-300" />
+                      {label}
+                      <ChevronDown size={14} className="text-cyan-100/70" />
+                    </button>
+
+                    {policyMenuOpen && (
+                      <div className="absolute right-0 top-full z-50 w-72 rounded-xl border border-cyan-300/20 bg-[#031425]/98 p-3 shadow-[0_0_34px_rgba(14,165,233,0.24)] backdrop-blur-xl">
+                        <div className="mb-2 px-2 text-xs font-bold uppercase tracking-[0.22em] text-cyan-200/80">
+                          Policy pages
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            setPolicyMenuOpen(false);
+                            setActivePage("singapore-policy");
+                          }}
+                          className="w-full rounded-lg border border-cyan-300/25 bg-cyan-400/10 px-3 py-3 text-left text-sm text-cyan-100 hover:bg-cyan-400/20"
+                        >
+                          <div className="font-semibold text-white">Singapore</div>
+                          <div className="mt-1 text-xs leading-5 text-slate-400">
+                            
+                          </div>
+                        </button>
+
+                        {["Thailand", "Philippines", "Malaysia", "Indonesia", "Vietnam"].map((country) => (
+                          <button
+                            key={country}
+                            disabled
+                            className="mt-2 w-full cursor-not-allowed rounded-lg border border-slate-600/30 bg-slate-900/30 px-3 py-3 text-left text-sm text-slate-500 opacity-70"
+                            title="Policy page under construction"
+                          >
+                            <div className="font-semibold">{country}</div>
+                            <div className="mt-1 text-xs leading-5">Coming soon</div>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <button
+                  key={label}
+                  onClick={() => {
+                    setPolicyMenuOpen(false);
+                    if (label === "Southeast Asia") setSelected("Southeast Asia");
+                  }}
+                  className={`relative flex items-center gap-2 px-2 py-4 ${active ? "text-white" : "hover:text-white"}`}
+                >
+                  <Icon size={19} className={active ? "text-cyan-200" : "text-slate-300"} />
+                  {label}
+                  {active && <span className="absolute bottom-0 left-0 h-px w-full bg-cyan-300 shadow-[0_0_12px_rgba(34,211,238,1)]" />}
+                </button>
+              );
+            })}
           </nav>
 
           <div className="flex items-center overflow-hidden rounded-lg border border-cyan-300/20 bg-[#061a30] text-slate-200">
@@ -759,21 +823,21 @@ export default function App() {
                   onClick={() => setSelected("Singapore")}
                   className="w-full rounded-lg border border-cyan-300/15 bg-[#061a30] px-3 py-3 text-left text-sm text-cyan-100 hover:bg-cyan-400/10"
                 >
-                  Singapore
+                  Singapore Corpus
                 </button>
 
                 <button
                   onClick={() => setSelected("Thailand")}
                   className="w-full rounded-lg border border-cyan-300/15 bg-[#061a30] px-3 py-3 text-left text-sm text-cyan-100 hover:bg-cyan-400/10"
                 >
-                  Thailand
+                  Thailand Placeholder
                 </button>
 
                 <button
                   onClick={() => setSelected("Philippines")}
                   className="w-full rounded-lg border border-cyan-300/15 bg-[#061a30] px-3 py-3 text-left text-sm text-cyan-100 hover:bg-cyan-400/10"
                 >
-                  Philippines
+                  Philippines Placeholder
                 </button>
               </div>
 
