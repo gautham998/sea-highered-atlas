@@ -90,8 +90,8 @@ const countryProfiles = {
     corpus: "Comparative corpus",
   },
   Singapore: {
-    caption: "Access, meritocracy, financial aid, and polytechnic-to-university pathways.",
-    corpus: "3 sample studies",
+    caption: "Meritocracy, Class, Pathways.",
+    corpus: "12 sample studies",
   },
   Thailand: {
     caption: "Regional disparities, rural access, reform, and inclusion debates.",
@@ -698,8 +698,8 @@ export default function App() {
               <Sparkles size={20} />
             </div>
             <div>
-              <h1 className="text-xl font-bold leading-tight text-white">SEA Higher Education<br />Equity Atlas</h1>
-              <p className="mt-1 text-xs text-cyan-100/70">Evidence. Equity. Empowerment.</p>
+              <h1 className="text-xl font-bold leading-tight text-white">SEA Higher Education<br />Equity & Inclusivity Atlas</h1>
+              <p className="mt-1 text-xs text-cyan-100/70">What does the landscape looklike?.</p>
             </div>
           </div>
 
