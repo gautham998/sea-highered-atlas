@@ -189,7 +189,6 @@ export default function AboutPage({ onBack }) {
               "It is not a systematic review, although it may help prepare one.",
               "It is not an official account of government policy or institutional history.",
               "It does not yet provide full-text analysis of every source.",
-              "It does not claim that expanded access automatically means equity has been achieved.",
             ].map((item) => (
               <div
                 key={item}

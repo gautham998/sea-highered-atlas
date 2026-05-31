@@ -490,7 +490,7 @@ const singaporePolicy = {
     description:
       "As educational attainment rises, the degree itself may become less sufficient as a marker of mobility. Advantage may shift towards institution, discipline, networks, internships, and postgraduate pathways.",
     question:
-      "When more people hold credentials, what kinds of advantage become harder to measure?",
+      "As credentials become more common, how do students differentiate themselves through less visible forms of capital, such as internships, overseas exposure, networks, research experience, and postgraduate knowledge?",
     data: [
       { label: "Post-secondary or higher, 2006", value: 36.7 },
       { label: "Post-secondary or higher, 2016", value: 52 },
