@@ -38,6 +38,110 @@ const singaporePolicy = {
     },
   ],
 
+  recommendedReadings: [
+  {
+    label: "Journal article",
+    title: "University Restructuring in Singapore: Amazing or a Maze?",
+    author: "Lee & Gopinathan",
+    year: "2008",
+    url: "https://doi.org/10.2304/pfie.2008.6.5.569",
+    note:
+      "Core reading for Singapore’s university restructuring, autonomy with accountability, corporatisation, global competitiveness, and the regional education hub agenda.",
+  },
+  {
+    label: "Journal article",
+    title:
+      "The changing landscape of higher education and the role of quality assurance in Singapore",
+    author: "Lo",
+    year: "2014",
+    url: "https://academic.oup.com/policyandsociety/article/33/3/263/6422307",
+    note:
+      "Useful for understanding how quality assurance helped reshape Singapore’s higher education landscape in response to global and local policy agendas.",
+  },
+  {
+    label: "Journal article",
+    title: "Lifelong learning through the SkillsFuture movement in Singapore",
+    author: "Tan",
+    year: "2016",
+    url: "https://doi.org/10.1080/02601370.2016.1241833",
+    note:
+      "Important for the SkillsFuture and lifelong learning section, especially the tensions between academic prestige, vocational learning, and adult reskilling.",
+  },
+  {
+    label: "Working paper / article",
+    title: "Manpower Planning and University Enrollments",
+    author: "Pang",
+    year: "2005",
+    url: "https://ink.library.smu.edu.sg/cgi/viewcontent.cgi?article=1224&context=lkcsb_research",
+    note:
+      "Useful for the older manpower-planning logic behind university enrolments and the link between higher education, labour markets, and state planning.",
+  },
+  {
+    label: "Journal article",
+    title: "Doing class analysis in Singapore's elite education",
+    author: "Koh",
+    year: "2014",
+    url: "https://doi.org/10.1080/14767724.2014.888308",
+    note:
+      "Useful for the meritocracy, class, and hidden resources section. This helps connect higher education access to class reproduction and elite educational cultures.",
+  },
+  {
+    label: "Journal article",
+    title: "Sticky and slippery destinations for academic mobility",
+    author: "Chou",
+    year: "2021",
+    url: "https://www.jstor.org/stable/48765942",
+    note:
+      "Useful for thinking about Singapore as an academic destination and how global higher education mobility shapes the higher education landscape.",
+  },
+  {
+    label: "Book chapter",
+    title:
+      "Singapore’s Higher Education Systems in the Era of the Fourth Industrial Revolution",
+    author: "Gleason",
+    year: "2018",
+    url: "https://doi.org/10.1007/978-981-13-0194-0_7",
+    note:
+      "Useful for Smart Nation, SkillsFuture, new universities, 4IR readiness, lifelong learning, and Singapore’s higher education response to automation.",
+  },
+  {
+    label: "Official data document",
+    title: "Education Statistics Digest",
+    author: "Ministry of Education Singapore",
+    year: "2025",
+    url: "https://www.moe.gov.sg/about-us/publications/education-statistics-digest",
+    note:
+      "Use this for official statistics on enrolment, institutions, educational outcomes, finances, and long-run changes in the education system.",
+  },
+  {
+    label: "Government dataset",
+    title: "Education Profile of Singapore Residents Aged 25 Years and Over",
+    author: "Singapore Department of Statistics",
+    year: "2000–2024",
+    url: "https://data.gov.sg/datasets/d_7317a32321dbfad2cbb5b60ca74c9f08/view",
+    note:
+      "Use this for visualising educational attainment over time, including post-secondary and university qualification levels among Singapore residents.",
+  },
+  {
+    label: "Government dataset",
+    title: "Percentage of P1 Cohort who Progressed to Post-Secondary Education",
+    author: "Ministry of Education Singapore",
+    year: "1995–2024",
+    url: "https://data.gov.sg/datasets/d_d9c3dc47a770f8eb2f31432681558f36/view",
+    note:
+      "Use this for visualising access expansion from primary school cohorts into post-secondary pathways. This is especially useful for the access and expansion chart.",
+  },
+  {
+    label: "Government dataset",
+    title: "Intake, Enrolment and Graduates by Institutions",
+    author: "Ministry of Education Singapore",
+    year: "Current",
+    url: "https://data.gov.sg/collections/452/view",
+    note:
+      "Use this for institution-level data on intake, enrolment, and graduates across universities, polytechnics, ITE, arts institutions, and other post-secondary providers.",
+  },
+],
+
   researchQuestions: [
     {
       question: "What does Singapore’s higher education system serve?",
@@ -276,7 +380,7 @@ const singaporePolicy = {
     },
     {
       year: "2025",
-      title: "Final Yale-NUS cohort",
+      title: "Final USP & Yale-NUS cohort",
       category: "Restructuring",
       type: "End of institutional experiment",
       text:
@@ -322,6 +426,114 @@ const singaporePolicy = {
     },
   ],
 
+  dataVisuals: [
+  {
+    title: "Access expanded",
+    source: "MOE / historical cohort progression data",
+    visualType: "University and polytechnic entry ratio",
+    headline: "Formal access widened over time.",
+    description:
+      "The available data shows a major expansion in university and polytechnic access. This matters because Singapore’s higher education system moved from elite access towards much wider participation.",
+    question:
+      "When access expands, which/what forms of advantage become less visible in the data?",
+    data: [
+      { label: "1965", value: 5 },
+      { label: "1980", value: 10 },
+      { label: "1990", value: 37 },
+      { label: "2000", value: 58 },
+      { label: "2004", value: 61 },
+    ],
+  },
+  {
+  title: "Pathways differentiated",
+  source: "MOE / data.gov.sg intake, enrolment and graduate datasets",
+  visualType: "Pathway typology",
+  headline: "Singapore did not simply expand one route.",
+  description:
+    "The system grew through differentiated pathways: research universities, applied universities, polytechnics, ITE, professional schools, adult-learning institutions, and broad-based residential programmes. The equity question is not only how many pathways exist, but how each pathway is valued.",
+  question:
+    "How do students learn the symbolic value of different pathways, and how do institutional labels shape confidence, aspiration, transfer choices, and imagined futures?",
+  data: [],
+  pathways: [
+    {
+      name: "Research-intensive universities",
+      examples: "NUS, NTU",
+      logic: "Research, global rankings, academic prestige, professional pathways",
+    },
+    {
+      name: "Specialised universities",
+      examples: "SMU, SUTD",
+      logic: "Management, business, design, technology, innovation",
+    },
+    {
+      name: "Applied universities",
+      examples: "SIT, SUSS",
+      logic: "Applied learning, adult learning, industry-linked pathways",
+    },
+    {
+      name: "Pre-degree pathways",
+      examples: "Polytechnics, ITE",
+      logic: "Applied training, diploma routes, articulation into degree pathways",
+    },
+    {
+      name: "Broad-based / residential models",
+      examples: "USP, Yale-NUS, NUS College",
+      logic: "Interdisciplinarity, residential learning, global exposure, institutional capital",
+    },
+  ],
+},
+  {
+    title: "Credentials became more common",
+    source: "SingStat / educational attainment data",
+    visualType: "Credential society indicator",
+    headline: "More people hold post-secondary and university qualifications.",
+    description:
+      "As educational attainment rises, the degree itself may become less sufficient as a marker of mobility. Advantage may shift towards institution, discipline, networks, internships, and postgraduate pathways.",
+    question:
+      "When more people hold credentials, what kinds of advantage become harder to measure?",
+    data: [
+      { label: "Post-secondary or higher, 2006", value: 36.7 },
+      { label: "Post-secondary or higher, 2016", value: 52 },
+      { label: "University graduates, 2006", value: 19.6 },
+      { label: "University graduates, 2016", value: 29.1 },
+      { label: "University graduates aged 25-34, 2016", value: 54.3 },
+    ],
+  },
+    {
+    title: "Outcomes differ after graduation",
+    source: "Graduate Employment Survey / future linked dataset",
+    visualType: "Future outcome chart",
+    headline: "The value of higher education is also shaped after graduation.",
+    description:
+        "Graduate outcomes can vary by institution, course, field of study, labour-market demand, and students’ access to internships, networks, and career knowledge. This card marks a future chart rather than pretending that all outcome factors are numerically equal.",
+    question:
+        "How do students convert credentials into mobility, and who has the resources to make that conversion easier?",
+    data: [],
+    },
+],
+
+invisibleIndicators: [
+  {
+    title: "Institutional knowledge",
+    text:
+      "Students may enter university with very different levels of knowledge about modules, internships, scholarships, overseas opportunities, office hours, postgraduate pathways, and institutional norms.",
+  },
+  {
+    title: "Belonging and confidence",
+    text:
+      "Available datasets rarely capture whether students feel legitimate, recognised, or confident in elite university spaces.",
+  },
+  {
+    title: "Family and community resources",
+    text:
+      "Formal education data often misses the uneven family knowledge, financial flexibility, and social support that shape how students navigate university.",
+  },
+  {
+    title: "Conversion of opportunity",
+    text:
+      "Admission is only one stage. Students still need to convert university access into networks, credentials, internships, postgraduate opportunities, and work futures.",
+  },
+],
   institutionMatrix: [
     {
       institution: "NUS",

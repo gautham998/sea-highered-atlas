@@ -453,7 +453,163 @@ function References() {
     </Panel>
   );
 }
+function RecommendedReadings() {
+  return (
+    <div className="rounded-2xl border border-cyan-300/15 bg-[#061a30] p-5">
+      <div className="text-sm font-bold uppercase tracking-wide text-cyan-100">
+        Recommended readings
+      </div>
 
+      <p className="mt-3 text-sm leading-6 text-slate-400">
+        Start here for the scholarly and statistical foundations of this page.
+The readings foreground university restructuring, quality assurance,
+meritocracy, class, manpower planning, lifelong learning, and academic
+mobility. The data sources support future visualisations on attainment,
+participation, enrolment, and institutional pathways.
+      </p>
+
+      <div className="mt-5 max-h-[420px] space-y-3 overflow-y-auto pr-2">
+        {singaporePolicy.recommendedReadings.map((source) => (
+          <a
+            key={source.title}
+            href={source.url}
+            target="_blank"
+            rel="noreferrer"
+            className="block rounded-xl border border-cyan-300/15 bg-[#031425] p-4 transition hover:border-cyan-200/50 hover:bg-cyan-400/10"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="text-xs font-bold uppercase tracking-wide text-cyan-200">
+                  {source.label}
+                </div>
+                <h3 className="mt-1 text-sm font-bold leading-5 text-white">
+                  {source.title}
+                </h3>
+                <div className="mt-1 text-xs text-slate-400">
+                  {source.author}, {source.year}
+                </div>
+              </div>
+              <ExternalLink size={15} className="mt-1 shrink-0 text-cyan-200" />
+            </div>
+
+            <p className="mt-3 text-xs leading-5 text-slate-300">
+              {source.note}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+function MiniBarChart({ data }) {
+  const max = Math.max(...data.map((d) => d.value));
+
+  return (
+    <div className="mt-4 space-y-3">
+      {data.map((item) => (
+        <div key={item.label}>
+          <div className="mb-1 flex items-center justify-between gap-3 text-xs">
+            <span className="text-slate-300">{item.label}</span>
+            <span className="font-semibold text-cyan-100">
+              {item.value}
+              {item.value > 2 ? "%" : ""}
+            </span>
+          </div>
+
+          <div className="h-2.5 overflow-hidden rounded-full bg-[#020812]">
+            <div
+              className="h-full rounded-full bg-cyan-300/80 shadow-[0_0_12px_rgba(34,211,238,0.5)]"
+              style={{ width: `${Math.max(8, (item.value / max) * 100)}%` }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function DataVisualisationDashboard() {
+  return (
+    <Panel className="p-6">
+      <SectionTitle
+        eyebrow="Data visualisation"
+        title="What the data can show, and what it cannot"
+        subtitle="This section connects available higher education indicators to the deeper research questions on access, mobility, belonging, resources, and institutional knowledge."
+        icon={LineChart}
+      />
+
+      <div className="grid gap-4 lg:grid-cols-2">
+        {singaporePolicy.dataVisuals.map((item) => (
+          <div
+            key={item.title}
+            className="rounded-xl border border-cyan-300/15 bg-[#061a30] p-5"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-200">
+                  {item.title}
+                </div>
+                <h3 className="mt-2 text-xl font-bold text-white">
+                  {item.headline}
+                </h3>
+              </div>
+
+              <div className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs text-cyan-100">
+                {item.visualType}
+              </div>
+            </div>
+
+            <p className="mt-4 text-sm leading-6 text-slate-300">
+              {item.description}
+            </p>
+
+            <MiniBarChart data={item.data} />
+
+            <div className="mt-5 rounded-xl border border-amber-300/20 bg-amber-300/10 p-4">
+              <div className="text-xs font-bold uppercase tracking-wide text-amber-100">
+                Critical question
+              </div>
+              <p className="mt-2 text-sm font-semibold leading-6 text-amber-50">
+                {item.question}
+              </p>
+            </div>
+
+            <div className="mt-3 text-xs leading-5 text-slate-500">
+              Source direction: {item.source}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6 rounded-2xl border border-amber-300/20 bg-amber-300/10 p-5">
+        <div className="text-sm font-bold uppercase tracking-wide text-amber-100">
+          What these indicators cannot capture
+        </div>
+
+        <p className="mt-3 max-w-4xl text-sm leading-6 text-amber-50/90">
+          The available data can show expansion, attainment, enrolment, and
+          employment outcomes. It cannot fully show how students experience
+          university, how they learn the hidden rules of the institution, or how
+          they convert access into belonging, confidence, networks, and mobility.
+        </p>
+
+        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {singaporePolicy.invisibleIndicators.map((item) => (
+            <div
+              key={item.title}
+              className="rounded-xl border border-amber-300/20 bg-[#031425] p-4"
+            >
+              <h3 className="font-bold text-amber-100">{item.title}</h3>
+              <p className="mt-2 text-xs leading-5 text-slate-300">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Panel>
+  );
+}
 export default function SingaporePolicyPage({ onBack }) {
   return (
     <Shell>
@@ -488,22 +644,7 @@ export default function SingaporePolicyPage({ onBack }) {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-cyan-300/15 bg-[#061a30] p-5">
-            <div className="text-sm font-bold uppercase tracking-wide text-cyan-100">
-              Anchor sources
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {singaporePolicy.sourceLinks.map((source) => (
-                <SourcePill key={source.label} source={source} />
-              ))}
-            </div>
-            <p className="mt-5 text-sm leading-6 text-slate-400">
-              This page is a working research synthesis. It combines policy
-              history, source-linked evidence, and interpretive questions that
-              can guide a deeper study of access, mobility, and belonging in
-              Singapore higher education.
-            </p>
-          </div>
+          <RecommendedReadings />
         </div>
       </Panel>
 
@@ -511,10 +652,7 @@ export default function SingaporePolicyPage({ onBack }) {
         <ResearchQuestions />
         <NarrativeCards />
         <InteractiveTimeline />
-        <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-          <AccessExpansionChart />
-          <AttainmentChart />
-        </div>
+        <DataVisualisationDashboard />
         <InstitutionMatrix />
         <ThemesAndGaps />
         <References />

@@ -3,8 +3,9 @@ import SingaporePolicyPage from "./SingaporePolicyPage";
 import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import { getPapersForView } from "./data/papers";
+import AboutPage from "./AboutPage";
 import {
-  Home,
+  Info,
   Globe2,
   LayoutGrid,
   Database,
@@ -692,6 +693,9 @@ export default function App() {
   if (activePage === "singapore-policy") {
     return <SingaporePolicyPage onBack={() => setActivePage("atlas")} />;
   }
+  if (activePage === "about") {
+  return <AboutPage onBack={() => setActivePage("atlas")} />;
+  }
 
   return (
     <div className="min-h-screen bg-[#020812] text-slate-100">
@@ -712,7 +716,7 @@ export default function App() {
 
           <nav className="hidden items-center gap-8 text-sm text-slate-300 lg:flex">
             {[
-              [Home, "Home", true],
+              [Info, "About"],
               [Globe2, "Southeast Asia", true],
               [LayoutGrid, "Themes"],
               [Database, "Database"],
@@ -773,7 +777,14 @@ export default function App() {
                   key={label}
                   onClick={() => {
                     setPolicyMenuOpen(false);
-                    if (label === "Southeast Asia") setSelected("Southeast Asia");
+                    if (label === "About") {
+                      setActivePage("about");
+                    }
+
+                    if (label === "Southeast Asia") {
+                      setActivePage("atlas");
+                      setSelected("Southeast Asia");
+                    }
                   }}
                   className={`relative flex items-center gap-2 px-2 py-4 ${active ? "text-white" : "hover:text-white"}`}
                 >
